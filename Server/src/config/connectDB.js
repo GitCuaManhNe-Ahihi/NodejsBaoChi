@@ -13,7 +13,11 @@ const sequelize = new Sequelize(
       ssl: {
         require: true,
         rejectUnauthorized: false
-      }}
+      }},
+      query: {
+        raw: true
+      }
+      ,timezone: '+07:00'
   }
 );
 
