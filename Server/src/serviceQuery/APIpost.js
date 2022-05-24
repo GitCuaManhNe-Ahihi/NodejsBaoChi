@@ -182,8 +182,8 @@ export const ApiStatisticalPostFollowMonth = async () => {
         validator: 1,
       },
       attributes: [
-        [sequelize.fn("MONTH", sequelize.col("createdAt")), "month"],
-        [sequelize.fn("COUNT", sequelize.col("createdAt")), "count"],
+        [sequelize.fn("MONTH", sequelize.TO_TIMESTAMP(sequelize.col("createdAt"))), "month"],
+        [sequelize.fn("MONTH", sequelize.TO_TIMESTAMP(sequelize.col("createdAt"))), "count"],
         "genresId",
       ],
       group: ["month", "genresId"],
@@ -240,6 +240,7 @@ export const ApiCountPostFollowId = async (id) => {
       raw: true,
       logging: false,
       attributes: [
+
         [sequelize.fn("COUNT", sequelize.col("validator")), "count"],
         [sequelize.col("validator"), "validator"],
       ],

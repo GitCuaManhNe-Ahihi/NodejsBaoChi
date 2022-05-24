@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import moment from "moment";
 import { sendMail, sendMailForgetPassword } from "../nodemailer";
 import {
   AddUser,
@@ -52,13 +53,14 @@ export const handleAddUser = async (req, res, next) => {
         gender:false,
         phoneNumber: "",
         address: "",
-        birthDay: "",
+        birthDay: new Date()
       };
       try {
         await AddUser(data);
         sendMail(password, email);
         return res.status(201).json({ message: "ok", statuscode: 0 });
-      } catch {
+      } catch (e){
+        console.log(e);
         return next(createError(406, "Not Acceptable"));
       }
     }

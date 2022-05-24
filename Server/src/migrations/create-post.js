@@ -1,4 +1,5 @@
 "use strict";
+const pg = require("pg");
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Posts", {
@@ -22,16 +23,16 @@ module.exports = {
           key: "id",
         },
       },
-      view:{
+      view: {
         type: Sequelize.INTEGER,
-        defaultValue:0
+        defaultValue: 0,
       },
-      public_id:{
+      public_id: {
         type: Sequelize.STRING,
       },
-      like:{
+      like: {
         type: Sequelize.INTEGER,
-        defaultValue:0
+        defaultValue: 0,
       },
       genresId: {
         type: Sequelize.INTEGER,
@@ -40,16 +41,14 @@ module.exports = {
           key: "id",
         },
       },
-      validator:{
-        type:Sequelize.INTEGER,
-        defaultValue:0
+      validator: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
     });

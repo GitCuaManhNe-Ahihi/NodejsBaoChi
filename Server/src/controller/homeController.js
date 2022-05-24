@@ -17,10 +17,6 @@ export let homePage = async (req, res) => {
           index,
           story.content.indexOf('"', index)
         );
-        const timeofStory = formatDate(
-          Math.floor(new Date() - story.createdAt),
-          story.createdAt
-        );
         const neartime =
           values[2].length > 0
             ? values[2].filter((item) => item.id !== story.id)
@@ -54,7 +50,6 @@ export let homePage = async (req, res) => {
           story,
           image,
           neartime,
-          timeofStory,
           post24h: post_24h,
           afterpost,
           genres_,

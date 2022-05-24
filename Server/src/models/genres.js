@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     logging: false,
     modelName: 'Genres',
+    timestamps: false
   });
   return Genres;
 };

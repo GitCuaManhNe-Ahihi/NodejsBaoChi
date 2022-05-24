@@ -73,9 +73,6 @@ export const PostNearTime = async (data) => {
     db.Post.findAll({
       logging: false,
       where: {
-        createdAt: {
-          [Op.gte]: moment().subtract(3, "hours").toDate(),
-        },
         validator: 1,
       },
       include: [
@@ -101,9 +98,6 @@ export const post24H = async () => {
   try {
     const post = await db.Post.findAll({
       where: {
-        createdAt: {
-          [Op.gte]: moment().subtract(1, "days").toDate(),
-        },
         validator: 1,
       },
       include: [

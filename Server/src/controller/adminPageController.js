@@ -141,7 +141,8 @@ export const handleApiStatisticalPostFollowMonth = async (req, res, next) => {
   try {
     const data = await ApiStatisticalPostFollowMonth();
     return res.status(200).json(data);
-  } catch {
+  } catch (e){
+    console.log(e);
     return next(createError(400, "Bad Request"));
   }
 };

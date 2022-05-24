@@ -1,6 +1,8 @@
 import Sequelize from "sequelize";
 require("dotenv").config();
-console.log(process.env.DB_NAME);
+const pg = require('pg');
+pg.types.setTypeParser(1114, (str) => new Date((str.split(' ').join('T'))+'Z'));
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,

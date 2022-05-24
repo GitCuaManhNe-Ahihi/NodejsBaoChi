@@ -4,10 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-
+import { format } from 'date-fns';
+import moment from 'moment';
 //const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 require('dotenv').config();
+const pg = require('pg');
+pg.types.setTypeParser(1114, (str) =>moment(str).tz("+07").format());
 
 let sequelize;
 // if (config.use_env_variable) {
