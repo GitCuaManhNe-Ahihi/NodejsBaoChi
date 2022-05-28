@@ -154,12 +154,12 @@ body {
   margin: auto 0;
 }
 .header_logo_text {
-  margin-left: 40px;
   color: white;
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
 }
 .header_item_linkpage {
   text-decoration: none;
