@@ -19,7 +19,7 @@ export const handleResAllPost = async (req, res, next) => {
   if (allPost.code) {
     return next(createError(404, "Not Found"));
   } else {
-    console.log(allPost[0]);
+    console.log(allPost[2]);
     return res.status(200).json(allPost);
   }
 };
@@ -33,6 +33,7 @@ export const handleYourPost = async (req, res, next) => {
         .status(200)
         .json({ data: yourpost, statuscode: 0, message: "ok" });
     } catch (err) {
+      console.log(err);
       return next(createError(404, "Not Found Post"));
     }
   } else {
