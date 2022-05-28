@@ -19,7 +19,9 @@ export const handleimageDestroy = async(req, res, next) => {
 export const handUploadimage = async (req, res, next) => {
   try {
     const data = await uploadFile(req.file.path);
-    return res.status(201).json({ message: "ok", statuscode: 0, data });
+    console.log(data);
+    
+    return res.status(201).json({ message: "ok", statuscode: 0});
   } catch {
     return next(createError(400, "Bad Request"));
   } finally {
