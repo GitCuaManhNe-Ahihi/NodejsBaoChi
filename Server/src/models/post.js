@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       logging: false,
       modelName: "Post",
-      timestamps: false
+      timestamps:true
     }
   );
   return Post;

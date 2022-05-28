@@ -24,8 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       image: DataTypes.STRING,
       gender: DataTypes.BOOLEAN,
       admin:DataTypes.BOOLEAN,
-      createdAt:DataTypes.DATE,
-      updatedAt:DataTypes.DATE
     },
     {
       sequelize,
