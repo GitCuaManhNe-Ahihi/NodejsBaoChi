@@ -29,6 +29,8 @@ module.exports = (sequelize, DataTypes) => {
       view: DataTypes.INTEGER,
       like: DataTypes.INTEGER,
       validator:DataTypes.INTEGER,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
     {
       sequelize,

@@ -25,9 +25,10 @@ export const handleResAllPost = async (req, res, next) => {
 };
 
 export const handleYourPost = async (req, res, next) => {
-  if (req.body.id) {
+  const id = req.query.id
+  if (id) {
     try {
-      const yourpost = await ApiYourPost(req.body.id);
+      const yourpost = await ApiYourPost(id);
       return res
         .status(200)
         .json({ data: yourpost, statuscode: 0, message: "ok" });
@@ -52,6 +53,8 @@ export const handleNewPost = async (req, res, next) => {
         like: 0,
         view: 0,
         validator: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       };
       try {
         const newPost = await ApiNewArticle(data);
