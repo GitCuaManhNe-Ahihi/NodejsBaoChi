@@ -19,6 +19,7 @@ export const handleResAllPost = async (req, res, next) => {
   if (allPost.code) {
     return next(createError(404, "Not Found"));
   } else {
+    console.log(allPost[0]);
     return res.status(200).json(allPost);
   }
 };
