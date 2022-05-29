@@ -53,7 +53,7 @@ export const handleAddUser = async (req, res, next) => {
         gender:false,
         phoneNumber: "",
         address: "",
-        birthDay: new Date()
+        birthDay: new Date(),
       };
       try {
         await AddUser(data);

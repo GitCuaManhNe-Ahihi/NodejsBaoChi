@@ -182,14 +182,31 @@ export const ApiStatisticalPostFollowMonth = async () => {
         validator: 1,
       },
       attributes: [
-        [sequelize.fn("MONTH", sequelize.TO_TIMESTAMP(sequelize.col("createdAt"))), "month"],
-        [sequelize.fn("MONTH", sequelize.TO_TIMESTAMP(sequelize.col("createdAt"))), "count"],
+        [
+          sequelize.literal(
+            'extract(month from "Post"."createdAt"::timestamp)'
+          ),
+          "month",
+        ],
+        [
+          sequelize.fn(
+            "COUNT",
+            sequelize.literal(
+              'extract(month from "Post"."createdAt"::timestamp)'
+            )
+          ),
+          "count",
+        ],
         "genresId",
       ],
-      group: ["month", "genresId"],
+      group: [
+        sequelize.literal('extract(month from "Post"."createdAt"::timestamp)'),
+        "genresId",
+      ],
     })
 
       .then((data) => {
+        console.log(data);
         resolve(data, { message: "ok", code: 0 });
       })
       .catch((err) => {
@@ -240,7 +257,6 @@ export const ApiCountPostFollowId = async (id) => {
       raw: true,
       logging: false,
       attributes: [
-
         [sequelize.fn("COUNT", sequelize.col("validator")), "count"],
         [sequelize.col("validator"), "validator"],
       ],

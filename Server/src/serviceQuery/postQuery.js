@@ -74,6 +74,9 @@ export const PostNearTime = async (data) => {
       logging: false,
       where: {
         validator: 1,
+        createdAt: {
+          [Op.gte]: moment().subtract(4, "hours").toDate(),
+        }
       },
       include: [
         {
@@ -82,7 +85,7 @@ export const PostNearTime = async (data) => {
           as: "genres",
         },
       ],
-      limit: 3,
+      limit: 10,
       raw: true,
     })
       .then((data) => {
@@ -99,6 +102,9 @@ export const post24H = async () => {
     const post = await db.Post.findAll({
       where: {
         validator: 1,
+        updatedAt: {
+          [Op.gte]: moment().subtract(24, "hours").toDate(),
+        }
       },
       include: [
         {

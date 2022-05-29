@@ -73,7 +73,7 @@ if(post_of_genres.length > 0){ %>
                   </a>
                 </h1>
                 <div class="story__thumb_info">
-                  <div class="story__thumb_time"><%= post_of_genres[j].createdAt %> </div>
+                  <div class="story__thumb_time"><%= formatTIME(post_of_genres[j].createdAt.getTime())%> </div>
                   <div class="story_thumb_dash">-</div>
                   <div class="story__thumb_cmt">
                     <span class="far fa-comment-dots"></span>
@@ -109,7 +109,7 @@ if(post_of_genres.length > 0){ %>
               >
             </h1>
             <div class="story__thumb_info">
-              <div class="story__thumb_time"><%= post_of_genres[post_of_genres.length-2].createdAt %> </div>
+              <div class="story__thumb_time"><%= formatTIME(post_of_genres[post_of_genres.length-2].createdAt.getTime())%></div>
               <div class="story_thumb_dash">-</div>
               <div class="story__thumb_cmt">
                 <span class="far fa-comment-dots"></span>
@@ -140,7 +140,7 @@ if(post_of_genres.length > 0){ %>
               >
             </h1>
             <div class="story__thumb_info">
-              <div class="story__thumb_time"><%= post_of_genres[post_of_genres.length-1].createdAt %> </div>
+              <div class="story__thumb_time"><%= formatTIME(post_of_genres[post_of_genres.length-1].createdAt.getTime())%></div>
               <div class="story_thumb_dash">-</div>
               <div class="story__thumb_cmt">
                 <span class="far fa-comment-dots"></span>

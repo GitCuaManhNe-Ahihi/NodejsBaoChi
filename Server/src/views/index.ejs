@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-
+    <link rel="icon" href="./assests/img/icon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,16 +42,13 @@
                       alt="anh story"
                       class="story__thumb_img_main"
                     />
-                    <span class="icon__play story_icon"
-                      ><i class="fas fa-play-circle"></i
-                    ></span>
                   </div>
                   <div class="story__thumb--text">
                     <h1 class="story__thumb-text">
                       <a href="#"> <%= story.title%> </a>
                     </h1>
                     <div class="story__thumb_info">
-                      <div class="story__thumb_time">8 gio</div>
+                      <div class="story__thumb_time"><%= time %></div>
                       <div class="story_thumb_dash">-</div>
                       <div class="story__thumb_cmt">
                         <span class="far fa-comment-dots"></span>
@@ -61,7 +58,6 @@
                   </div>
                 </article>
               </a>
-              <div class="grid grid-l"><%- include('rowcontent') %></div>
             </div>
             <div class="col-33 r-content">
               <%- include('content_tab',{neartime:neartime}) %>
@@ -94,29 +90,31 @@
         appId: "1:895836903444:web:1ae6c36287e5acc25faf01",
         measurementId: "G-WDWGY7C82M"
       };
+      let user
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
       const auth = getAuth(app);
-      document.getElementById("login_google").addEventListener("click", async(e) => { 
+      document.getElementById("login_google").addEventListener("click", async() => { 
         const provider = new GoogleAuthProvider();
         signInWithRedirect(auth, provider);
-        getRedirectResult(auth)
+        await getRedirectResult(auth)
         .then((result) => {
     // This gives you a Google Access Token. You can use it to access Google APIs.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-
         // The signed-in user info.
-        const user = result.user;
-        console.log(user,token,credential);
+       user = result.user;
+       localStorage.setItem('user',JSON.stringify(user))
+       localStorage.setItem('token',token)
+        window.location.href = '/'
       })
       });
       document.getElementById("login_facebook").addEventListener("click", async(e) => { 
         const provider = new FacebookAuthProvider();
         signInWithRedirect(auth, provider);
-        getRedirectResult(auth)
+        await getRedirectResult(auth)
         .then((result) => {
     // This gives you a Google Access Token. You can use it to access Google APIs.
         const credential = FacebookAuthProvider.credentialFromResult(result);
@@ -124,10 +122,35 @@
 
         // The signed-in user info.
         const user = result.user;
-        console.log(user,token,credential);
       })
 
       });
+      window.addEventListener("load", async() => {
+        user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+        console.log(user.photoURL)
+        document.getElementById("iconlogin").style.display = "none";
+        document.getElementById("avatar_login").style.display = "block";
+        document.getElementById("avatar_login").src = user.photoURL;
+        document.getElementById("login_title").style.display = "none";
+        document.getElementById("group_login").style.display = "none";
+        document.getElementById("group_logout").style.display = "block";
+       
+      }
+      else{
+        document.getElementById("avatar_login").style.display ="none";
+        document.getElementById("iconlogin").style.display = "block";
+        document.getElementById("login_title").style.display = "block";
+        document.getElementById("group_login").style.display = "block";
+        document.getElementById("group_logout").style.display = "none";
+      }
+      });
+      document.getElementById('logout').addEventListener('click',()=>{
+        auth.signOut()
+          localStorage.removeItem('user')
+          localStorage.removeItem('token')
+          window.location.reload()
+      })
      
     </script>
   

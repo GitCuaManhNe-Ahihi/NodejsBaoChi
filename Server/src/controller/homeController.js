@@ -8,61 +8,63 @@ import {
 import { formatDate } from "../Helper/index.js";
 
 export let homePage = async (req, res) => {
-  // await Promise.all([QueryAllpost(), QueryAllpost(), PostNearTime(), post24H()])
-  //   .then((values) => {
-  //     if (values[0].length > 0) {
-  //       const story = values[0].slice(0, 1)[0];
-  //       const index = story.content.indexOf("http://res.cloudinary.com/");
-  //       const image = story.content.slice(
-  //         index,
-  //         story.content.indexOf('"', index)
-  //       );
-  //       const neartime =
-  //         values[2].length > 0
-  //           ? values[2].filter((item) => item.id !== story.id)
-  //           : [];
+  await Promise.all([QueryAllpost(),getAllGenres(), PostNearTime(), post24H()])
+    .then((values) => {
+      if (values[0].length > 0) {
+        const story = values[0].slice(0, 1)[0];
+        const time = formatDate(new Date() - story.createdAt, story.createdAt);
+        const index = story.content.indexOf("http://res.cloudinary.com/");
+        const image = story.content.slice(
+          index,
+          story.content.indexOf('"', index)
+        );
+        const neartime =
+          values[2].length > 0
+            ? values[2].filter((item) => item.id !== story.id)
+            : [];
 
-  //       let post_24h =
-  //         values[3].length > 0
-  //           ? values[3].filter(
-  //               (item) =>
-  //                 item.id !== story.id &&
-  //                 JSON.stringify(neartime).indexOf(`"id":${item.id}`) === -1
-  //             )
-  //           : [];
-  //       post_24h = post_24h.slice(0, 4);
-  //       const headerBottom =
-  //         values[1].length > 0
-  //           ? values[1].map((item) => {
-  //               return { name: item.name, link: "/" };
-  //             })
-  //           : [];
-  //       let afterpost = [...values[0].slice(1, values[0].length)].filter(
-  //         (item) =>
-  //           item.id !== story.id &&
-  //           JSON.stringify(post_24h).indexOf(`"id":${item.id}`) === -1 &&
-  //           JSON.stringify(neartime).indexOf(`"id":${item.id}`) === -1
-  //       );
-  //       const genres = new Set(afterpost.map((item) => item["genres.name"]));
-  //       const genres_ = Array.from(genres);
-  //       return res.render("index.ejs", {
-  //         headerBottom,
-  //         story,
-  //         image,
-  //         neartime,
-  //         post24h: post_24h,
-  //         afterpost,
-  //         genres_,
-  //       });
-  //     } else {
-  //       return res.render("404.ejs");
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     return res.render("404.ejs");
-  //   });
-  return res.render("demoreact.ejs");
+        let post_24h =
+          values[3].length > 0
+            ? values[3].filter(
+                (item) =>
+                  item.id !== story.id &&
+                  JSON.stringify(neartime).indexOf(`"id":${item.id}`) === -1
+              )
+            : [];
+        post_24h = post_24h.slice(0, 4);
+        const headerBottom =
+          values[1].length > 0
+            ? values[1].map((item) => {
+                return { name: item.name, link: "/" };
+              })
+            : [];
+        let afterpost = [...values[0].slice(1, values[0].length)].filter(
+          (item) =>
+            item.id !== story.id &&
+            JSON.stringify(post_24h).indexOf(`"id":${item.id}`) === -1 &&
+            JSON.stringify(neartime).indexOf(`"id":${item.id}`) === -1
+        );
+        const genres = new Set(afterpost.map((item) => item["genres.name"]));
+        const genres_ = Array.from(genres);
+        return res.render("index.ejs", {
+          headerBottom,
+          story,
+          image,
+          neartime,
+          post24h: post_24h,
+          afterpost,
+          genres_,
+          time
+        });
+      } else {
+        return res.render("404.ejs");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.render("404.ejs");
+    });
+  
 };
 export let postPage = async (req, res) => {
   const id = req.query.id;

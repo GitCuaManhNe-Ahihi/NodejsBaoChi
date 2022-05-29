@@ -19,7 +19,6 @@ export const handleResAllPost = async (req, res, next) => {
   if (allPost.code) {
     return next(createError(404, "Not Found"));
   } else {
-    console.log(allPost[2]);
     return res.status(200).json(allPost);
   }
 };
@@ -29,6 +28,7 @@ export const handleYourPost = async (req, res, next) => {
   if (id) {
     try {
       const yourpost = await ApiYourPost(id);
+      console.log(yourpost);
       return res
         .status(200)
         .json({ data: yourpost, statuscode: 0, message: "ok" });
@@ -53,9 +53,7 @@ export const handleNewPost = async (req, res, next) => {
         public_id: public_id,
         like: 0,
         view: 0,
-        validator: 0,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        validator: 0
       };
       try {
         const newPost = await ApiNewArticle(data);

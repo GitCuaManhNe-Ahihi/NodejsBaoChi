@@ -1063,3 +1063,10 @@ span.icon__play {
   font-size: 20px;
   border-radius: 2px;
 }
+#avatar_login
+{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
