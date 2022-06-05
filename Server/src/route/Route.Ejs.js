@@ -8,5 +8,4 @@ const InitRouteWeb = (app) => {
   return app.use(route);
 };
 
-
 export default InitRouteWeb;

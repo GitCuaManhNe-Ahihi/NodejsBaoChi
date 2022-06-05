@@ -97,7 +97,6 @@ const handleMakeContent = async (images, docxpath) => {
     return err;
   }
 };
- 
 
 module.exports = {
   streamMorgan,
@@ -106,6 +105,4 @@ module.exports = {
   handleMakeContent,
   removeFileImage,
   handleReadfile,
- 
-  
 };

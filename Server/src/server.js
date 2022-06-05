@@ -10,6 +10,7 @@ import configViewEngineApp from "./config/viewEngine.js";
 import { LogEvent, streamMorgan } from "./Helper/index.js";
 import InitAPI from "./route/InitAPIWeb.js";
 import InitRouteWeb from "./route/Route.Ejs.js";
+import InitRouteComment from "./route/comment.route.js";
 const createError = require("http-errors");
 
 dotenv.config();
@@ -61,6 +62,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "100mb" }));
 configViewEngineApp(app);
 InitAPI(app);
 InitRouteWeb(app)
+InitRouteComment(app)
 app.use((req, res, next) => next(createError(404, "Not Found")));
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

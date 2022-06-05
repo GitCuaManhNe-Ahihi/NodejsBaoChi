@@ -57,8 +57,8 @@ if(post_of_genres.length > 0){ %>
             const image =post_of_genres[j].content.slice(index2,lastindex2)%>
             <article class="story story--primary">
               <a
-                href="/post?id=<%=post_of_genres[j].id %>"
-                class="story__thumb--img"
+                link-data="/post?id=<%=post_of_genres[j].id %>"
+                class="story__thumb--img article_section"
               >
                 <img
                   src="<%= image%>"
@@ -68,7 +68,7 @@ if(post_of_genres.length > 0){ %>
               </a>
               <div class="story__thumb--text">
                 <h1 class="story__thumb-text">
-                  <a href="/post?id=<%=post_of_genres[j].id %>"
+                  <a link-data="/post?id=<%=post_of_genres[j].id %>" class="article_section"
                     ><%= post_of_genres[j].title%>
                   </a>
                 </h1>
@@ -81,7 +81,6 @@ if(post_of_genres.length > 0){ %>
                   </div>
                 </div>
               </div>
-              <span class="icon__play"><i class="fas fa-play-circle"></i></span>
             </article>
             <% } %>
           </div>

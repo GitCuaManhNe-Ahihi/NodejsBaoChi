@@ -140,3 +140,24 @@ export const getAllGenres = async () => {
       });
   });
 };
+
+export const riseCountView = async (idv) => {
+  return new Promise((resolve, reject) => {
+    db.Post.update(
+      {
+        countView: db.sequelize.literal("countView + 1"),
+      },
+      {
+        where: {
+          id: idv,
+        },
+      }
+    )
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

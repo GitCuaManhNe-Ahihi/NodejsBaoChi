@@ -168,7 +168,7 @@ span.colorPri{
     margin-bottom: 10px;
 }
 .categories{
-    width: 698px;
+    width:984px;
     overflow: hidden;
     overflow-x: scroll;
     margin-bottom: 20px;
@@ -222,6 +222,7 @@ span.colorPri{
     background-color: var(--backColor);
     border-radius: 5px;
     font-size: 13px;
+    width: 900px;
 }
 .morenews h3{
     text-transform: uppercase;
@@ -329,13 +330,13 @@ span.colorPri{
     margin-left: 10px;
 }
 #main{
-    width: 680px;
+    width: 984px;
     overflow: hidden;
 
 
 }
 #main img{
-    width: 680px;
+   width: 984px;
     margin: auto;
     height: 500px;
     display: block;

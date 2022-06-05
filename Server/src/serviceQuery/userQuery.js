@@ -204,4 +204,4 @@ export let findOneUser = async (id) => {
         reject(err);
       });
   });
-}
+};

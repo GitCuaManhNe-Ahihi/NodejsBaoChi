@@ -4,6 +4,7 @@ import {
   PostFollowId,
   PostNearTime,
   QueryAllpost,
+  riseCountView,
 } from "../serviceQuery/postQuery";
 import { formatDate } from "../Helper/index.js";
 
@@ -68,6 +69,7 @@ export let homePage = async (req, res) => {
 };
 export let postPage = async (req, res) => {
   const id = req.query.id;
+ await riseCountView(id);
  await Promise.all([PostFollowId(id), getAllGenres(),  PostNearTime()])
     .then((values) => {
       if (values[0]) {
@@ -76,7 +78,6 @@ export let postPage = async (req, res) => {
           Math.floor(new Date() - post.createdAt),
           post.createdAt
         );
-        console.log( post.createdAt)
         let dataHTML = post.content;
         const headerBottom =
           values[2].length > 0
@@ -84,6 +85,7 @@ export let postPage = async (req, res) => {
                 return { name: item.name, link: "/" };
               })
             : [];
+            
         return res.render("./detail_post/post_detail.ejs", {
           headerBottom,
           post,

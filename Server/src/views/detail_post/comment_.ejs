@@ -1,7 +1,7 @@
 <div class="detail_comment">
     <div class="detail_author input_cmt">
         <div class="author_img  is-hover">
-            <img src="./assests/img/author_ava.png" alt="avt author">
+            <img src="./assests/img/author_ava.png" alt="avt author" id="img_comment_author">
         </div>
         <form class="author_info" method="get">
             <span>
@@ -15,77 +15,30 @@
             </span>
         </form>
     </div>
-    <div class="detail_author show_cmt">
+    <div class="detail_author show_cmt" id="showcomment">
         
-        <div class="show-comment__elements">
-            <div class="author_info">
-                <span>
-                    <div class="author_info__header">
-                        <div class="author_img  is-hover">
-                            <img src="./assests/img/avt_us.png" alt="avt author">
-                        </div>
-                        <div class="nameAtime_us_cmt">
-                            <div class="name_us_cmt">Phạm Văn Biển</div>
-                            <time>20:41 ngày 25/02/2022</time>
-                        </div>
-                    </div>
-                    <div class="content_us_cmt">Hoan hô Công an tỉnh Khánh Hòa, liên quan đến Việt Á nếu mình không nhầm thì đây là lần đầu tiên Cơ quan Công an địa phương vào cuộc.</div>
-                </span>
-                <span class="us_response">
-                    <a href="#" class="us_response_t t_active"><i class="fa-solid fa-thumbs-up"></i><span class="res_like_num">10</span> Thích</a>
-                    <a href="#" class="us_response_tl"><i class="fa-solid fa-paper-plane"></i>Trả lời</a>
-                    <a href="#" class="us_response_bc"><i class="fa-solid fa-circle-exclamation"></i>Báo cáo</a>
-                </span>
-                
+     
+    </div>
+</div>
+<div class="show-comment__elements" id="comment_element" style="display: none;">
+    <div class="author_info">
+        <span>
+            <div class="author_info__header">
+                <div class="author_img  is-hover">
+                    <img src="{{url}}"   alt="avt author">
+                </div>
+                <div class="nameAtime_us_cmt">
+                    <div class="name_us_cmt">{{name}}</div>
+                    <time>{{time}}</time>
+                </div>
             </div>
-        </div>
-         
-        <div class="show-comment__elements">
-            <div class="author_info">
-                <span>
-                    <div class="author_info__header">
-                        <div class="author_img  is-hover">
-                            <img src="./assests/img/avt_us.png" alt="avt author">
-                        </div>
-                        <div class="nameAtime_us_cmt">
-                            <div class="name_us_cmt">Phạm Văn Biển</div>
-                            <time>20:41 ngày 25/02/2022</time>
-                        </div>
-                    </div>
-                    <div class="content_us_cmt">Hoan hô Công an tỉnh Khánh Hòa, liên quan đến Việt Á nếu mình không nhầm thì đây là lần đầu tiên Cơ quan Công an địa phương vào cuộc.</div>
-                </span>
-                <span class="us_response">
-                    <a href="#" class="us_response_t t_active"><i class="fa-solid fa-thumbs-up"></i><span class="res_like_num">10</span> Thích</a>
-                    <a href="#" class="us_response_tl"><i class="fa-solid fa-paper-plane"></i>Trả lời</a>
-                    <a href="#" class="us_response_bc"><i class="fa-solid fa-circle-exclamation"></i>Báo cáo</a>
-                </span>
-                
-            </div>
-        </div>
-        
-         
-        <div class="show-comment__elements">
-            <div class="author_info">
-                <span>
-                    <div class="author_info__header">
-                        <div class="author_img  is-hover">
-                            <img src="./assests/img/avt_us.png" alt="avt author">
-                        </div>
-                        <div class="nameAtime_us_cmt">
-                            <div class="name_us_cmt">Phạm Văn Biển</div>
-                            <time>20:41 ngày 25/02/2022</time>
-                        </div>
-                    </div>
-                    <div class="content_us_cmt">Hoan hô Công an tỉnh Khánh Hòa, liên quan đến Việt Á nếu mình không nhầm thì đây là lần đầu tiên Cơ quan Công an địa phương vào cuộc.</div>
-                </span>
-                <span class="us_response">
-                    <a href="#" class="us_response_t t_active"><i class="fa-solid fa-thumbs-up"></i><span class="res_like_num">10</span> Thích</a>
-                    <a href="#" class="us_response_tl"><i class="fa-solid fa-paper-plane"></i>Trả lời</a>
-                    <a href="#" class="us_response_bc"><i class="fa-solid fa-circle-exclamation"></i>Báo cáo</a>
-                </span>
-                
-            </div>
-        </div>
+            <div class="content_us_cmt">{{content}}</div>
+        </span>
+        <span class="us_response">
+            <a href="#" class="us_response_t t_active"><i class="fa-solid fa-thumbs-up"></i><span class="res_like_num">10</span> Thích</a>
+            <a href="#" class="us_response_tl"><i class="fa-solid fa-paper-plane"></i>Trả lời</a>
+            <a href="#" class="us_response_bc"><i class="fa-solid fa-circle-exclamation"></i>Báo cáo</a>
+        </span>
         
     </div>
 </div>

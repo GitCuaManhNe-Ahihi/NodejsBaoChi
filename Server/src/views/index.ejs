@@ -7,6 +7,8 @@
     <title>Báo chí</title>
     <link rel="stylesheet" href="./assests/css/grid.css" />
     <link rel="stylesheet" href="./assests/css/index.css" />
+    <!--Ajax-->
+    
     <!-- font awesome  -->
     <link
       rel="stylesheet"
@@ -23,10 +25,13 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- css post  -->
+    <link rel="stylesheet" href="./assests/css/post123.css" />
   </head>
   <body>
     <%- include('header', {headerBottom: headerBottom}); %>
-    <div class="content">
+    <div class="content" id="content">
       <div class="content_inner">
         <div class="grid">
           <div class="row"><%- include('trending') %></div>
@@ -34,7 +39,7 @@
         <div class="grid widget">
           <div class="row">
             <div class="col-66 l-content">
-              <a href="/post?id=<%=story.id%>">
+              <div id="postStory">
                 <article class="story">
                   <div class="story__thumb--img_main">
                     <img
@@ -57,7 +62,7 @@
                     </div>
                   </div>
                 </article>
-              </a>
+              </div>
             </div>
             <div class="col-33 r-content">
               <%- include('content_tab',{neartime:neartime}) %>
@@ -72,6 +77,41 @@
     <a class="go-up" href="#">
       <i class="fa-solid fa-angle-up"></i>
     </a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".post-24h").click(function () {
+          const link = $(this).attr("link-data");
+          $("#content").load(link);
+          $(".news").css("display", "none");
+          return false;
+        });
+      });
+      $(document).ready(function () {
+        $("#postStory").click(function () {
+          $("#content").load("/post?id=<%=story.id%>");
+          $(".news").css("display", "none");
+          return false;
+        });
+      });
+      $(document).ready(function () {
+        $(".article_section").click(function () {
+          const link = $(this).attr("link-data");
+          $("#content").load(link);
+          $(".news").css("display", "none");
+          return false;
+        });
+      });
+      $(document).ready(function () {
+        $(".left-tab").click(function () {
+          $(".news").css("display", "none");
+          const link = $(this).attr("link-data");
+          $("#content").load(link);
+          return false;
+        });
+      });
+      
+    </script>
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
